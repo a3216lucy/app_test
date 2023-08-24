@@ -3,6 +3,8 @@
     "source.fixAll.tslint": true,
     "source.organizeImports": true
   },
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
