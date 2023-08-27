@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 /// 小按鈕
 class Button extends StatefulWidget {
-  const Button({Key? key, required this.text, required this.price})
+  const Button({Key? key, required this.text, required this.song})
       : super(key: key);
   final String text;
-  final double price;
+  final String song;
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -35,7 +35,7 @@ class _ButtonState extends State<Button> {
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              '＄${widget.price}',
+              widget.song,
               softWrap: true,
               style: const TextStyle(
                   color: Colors.white,

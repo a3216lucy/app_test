@@ -32,9 +32,11 @@ final GoRouter router = GoRouter(
                       // child route
                       GoRoute(
                           path: ':index',
-                          builder: (context, state) => Details(
-                              index:
-                                  int.parse(state.pathParameters['index']!))),
+                          builder: (context, state) {
+                            final index = int.tryParse(
+                                state.pathParameters['index'] ?? '');
+                            return Details(index: index);
+                          }),
                     ]),
               ],
             ),

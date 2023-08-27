@@ -9,41 +9,143 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final List<Tab> myTabs = <Tab>[
-    const Tab(text: 'Your subscriptions'),
-    const Tab(text: 'Upcoming bills'),
-  ];
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  // 分頁控制器
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 200,
-          title: const RowBar(),
+      appBar: AppBar(
+        toolbarHeight: 180,
+        title: const Column(
+          children: [
+            Text(
+              'My Music Library',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 20),
+            RowBar(),
+          ],
         ),
-        body: const ColBar());
-    // SingleChildScrollView(
-    //     physics: const BouncingScrollPhysics(),
-    //     child: ListView(
-    //       primary: false,
-    //       shrinkWrap: true,
-    //       children: <Widget>[
-    //         for (int i = 0; i < 16; i++)
-    //           Column(
-    //             children: [
-    //               ListTile(
-    //                 leading: const CircleAvatar(child: Text('A')),
-    //                 title: Text(i.toString()),
-    //                 subtitle: const Text('Supporting text'),
-    //                 trailing: const Icon(Icons.favorite_rounded),
-    //                 onTap: () => GoRouter.of(context)
-    //                     .push(ScreenPaths.detailPage(index: 1)),
-    //               ),
-    //               const Divider(height: 0),
-    //             ],
-    //           )
-    //       ],
-    //     )));
+      ),
+      body: Stack(
+          alignment: Alignment.bottomCenter,
+          fit: StackFit.passthrough,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Container(
+                    width: 328,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[900],
+                      boxShadow: List.filled(
+                          2,
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.1),
+                            spreadRadius: 0.2,
+                            blurRadius: 0.2,
+                          ),
+                          growable: true),
+                      borderRadius: BorderRadius.circular(
+                        15.0,
+                      ),
+                    ),
+                    child: TabBar(
+                      controller: _tabController,
+                      isScrollable: false,
+                      indicatorPadding: const EdgeInsets.all(7.0),
+                      dividerColor: Colors.transparent,
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          20.0,
+                        ),
+                        color: const Color.fromRGBO(78, 78, 97, 0.2),
+                        border: Border.all(
+                          color: Colors.white12,
+                          width: 0.5,
+                        ),
+                      ),
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      labelColor: Colors.white,
+                      labelStyle: const TextStyle(
+                          fontSize: 13.5, fontWeight: FontWeight.bold),
+                      unselectedLabelColor: Colors.grey[700],
+                      tabs: const [
+                        // first tab，可加 icon property
+                        Tab(
+                          text: '播放清單',
+                        ),
+
+                        // second tab，可加 icon property
+                        Tab(
+                          text: '播放紀錄',
+                        ),
+                      ],
+                    ),
+                  ),
+                  // tab bar view
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                        // first tab
+                        Center(
+                          child: ColBar(),
+                        ),
+                        // second tab
+                        Center(
+                          child: Text(
+                            '空空如也 ...',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // 接近 navbar 的地方加陰影
+            Container(
+              height: 60,
+              alignment: Alignment.bottomCenter,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    // 起始顏色帶有透明度
+                    Colors.black.withOpacity(0.1),
+                    // 結束顏色帶有透明度
+                    Colors.black.withOpacity(1),
+                  ],
+                ),
+              ),
+            ),
+          ]),
+    );
   }
 }

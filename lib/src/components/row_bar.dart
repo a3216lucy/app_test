@@ -11,22 +11,22 @@ class RowBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Button(
-          text: 'Active subs',
-          price: 12,
+          text: '南西肯恩',
+          song: '煙花',
         ),
         SizedBox(
           width: 10,
         ),
         Button(
-          text: 'Highest Subs',
-          price: 19.99,
+          text: '胡凱兒',
+          song: '菸癮',
         ),
         SizedBox(
           width: 10,
         ),
         Button(
-          text: 'Lowest Subs',
-          price: 5.99,
+          text: '美秀集團',
+          song: '戀人',
         ),
       ],
     );

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Details extends StatelessWidget {
-  const Details({Key? key, required this.index}) : super(key: key);
-  final int index;
+class Details extends StatefulWidget {
+  const Details({
+    Key? key,
+    this.index,
+  }) : super(key: key);
+  final int? index;
 
+  @override
+  State<Details> createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -11,8 +19,8 @@ class Details extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Details'),
         ),
-        body: const Text('details',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+        body: Text(widget.index.toString(),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
       ),
     );
   }

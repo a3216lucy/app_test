@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// 小按鈕
+/// 長按鈕
 class LargeButton extends StatefulWidget {
   const LargeButton(
       {Key? key,
@@ -26,10 +26,15 @@ class _LargeButtonState extends State<LargeButton> {
             side: const BorderSide(width: 0.1, color: Colors.white),
             backgroundColor: const Color.fromRGBO(78, 78, 97, 0.2),
             padding: EdgeInsets.zero,
-            fixedSize: const Size(328, 64),
+            fixedSize: const Size(332, 64),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0))),
-        onPressed: () => widget.onPressed!(),
+        onPressed: () {
+          // 調用 widget.onPressed，如果不為 null
+          if (widget.onPressed != null) {
+            widget.onPressed!();
+          }
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +51,7 @@ class _LargeButtonState extends State<LargeButton> {
               width: 20,
             ),
             SizedBox(
-              width: 180,
+              width: 150,
               child: Text(
                 widget.text,
                 softWrap: true,
@@ -55,6 +60,9 @@ class _LargeButtonState extends State<LargeButton> {
                     fontSize: 14,
                     fontWeight: FontWeight.bold),
               ),
+            ),
+            const SizedBox(
+              width: 10,
             ),
             Text(
               '${widget.releaseDate.year}-${widget.releaseDate.month}-${widget.releaseDate.day}',
