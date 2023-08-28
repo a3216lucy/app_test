@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 設定頁
 class Setting extends StatelessWidget {
   const Setting({Key? key}) : super(key: key);
 

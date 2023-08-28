@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 詳細頁
 class Details extends StatefulWidget {
   const Details({
     Key? key,

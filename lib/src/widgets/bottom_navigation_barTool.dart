@@ -4,6 +4,7 @@ import 'package:app_test/src/pages/home_page.dart';
 import 'package:app_test/src/pages/setting.dart';
 import 'package:flutter/material.dart';
 
+/// bottom nav bar
 class BottomNavigationBarTool extends StatefulWidget {
   const BottomNavigationBarTool({Key? key}) : super(key: key);
 

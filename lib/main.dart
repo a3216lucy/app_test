@@ -1,6 +1,7 @@
 import 'package:app_test/router.dart';
 import 'package:app_test/src/services/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 void setUpLocator() async {
@@ -11,7 +12,7 @@ void setUpLocator() async {
 /// 初始執行
 void main() {
   setUpLocator();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

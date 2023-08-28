@@ -17,7 +17,7 @@ class _ButtonState extends State<Button> {
     return OutlinedButton(
         style: TextButton.styleFrom(
             side: const BorderSide(width: 0.1, color: Colors.white),
-            backgroundColor: Color.fromRGBO(78, 78, 97, 0.2),
+            backgroundColor: const Color.fromRGBO(78, 78, 97, 0.2),
             padding: EdgeInsets.zero,
             fixedSize: const Size(104, 68),
             shape: RoundedRectangleBorder(

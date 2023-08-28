@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class KKBOXService {
   final Dio _dio = DioClient().dio;
 
-  ///受歡迎的產品
+  // 呼叫 API
   Future<Search> search() async {
     final response = await _dio.get('/search?q=理想混蛋&type=track&territory=TW');
 

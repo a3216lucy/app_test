@@ -2,6 +2,7 @@ import 'package:app_test/src/constants/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+/// Apps頁
 class Apps extends StatelessWidget {
   const Apps({Key? key}) : super(key: key);
 
