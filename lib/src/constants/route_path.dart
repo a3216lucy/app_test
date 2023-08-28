@@ -2,8 +2,10 @@
 class ScreenPaths {
   //home
   static String home() => '/home';
+  //a
+  static String a() => '/home/detail';
   //detailPage
-  static String detailPage({int? index}) => '/home/$index';
+  static String detailPage({int? index}) => '/home/detail/$index';
   //app
   static String app() => '/app';
   //calendar

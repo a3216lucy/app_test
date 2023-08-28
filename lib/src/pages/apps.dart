@@ -17,7 +17,8 @@ class Apps extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         OutlinedButton(
           onPressed: () {
-            GoRouter.of(context).go(ScreenPaths.detailPage(index: 43));
+            // GoRouter.of(context).go(ScreenPaths.detailPage(index: 43));
+            GoRouter.of(context).push(ScreenPaths.a());
           },
           child: const Text('Detail Page'),
         ),

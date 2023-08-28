@@ -60,8 +60,10 @@ class _PlayListsState extends State<PlayLists> {
                           // 執行導航導轉
                           print(
                               'Navigating to detailPage with index ${tracksData[index].duration}');
-                          GoRouter.of(context).go(ScreenPaths.detailPage(
+                          GoRouter.of(context).push(ScreenPaths.detailPage(
                               index: tracksData[index].duration));
+                          // GoRouter.of(context).go(ScreenPaths.detailPage(
+                          //     index: tracksData[index].duration));
                         },
                       );
                     },

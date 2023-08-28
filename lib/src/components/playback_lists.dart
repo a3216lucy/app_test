@@ -14,7 +14,7 @@ class PlaybackLists extends StatelessWidget {
         print('PlaybackLists');
         print(songList.length);
 
-        // 根據 songList 的內容構建UI
+        // 根據 songList 的內容構建 UI
         return ListView.builder(
           itemCount: songList.length,
           itemBuilder: (context, index) {
@@ -22,7 +22,6 @@ class PlaybackLists extends StatelessWidget {
             return ListTile(
               title: Text(song.name),
               subtitle: Text(song.album.name),
-              // 其他 song 屬性...
             );
           },
         );
