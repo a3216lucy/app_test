@@ -4,80 +4,68 @@ import 'package:app_test/src/pages/calendar.dart';
 import 'package:app_test/src/pages/details.dart';
 import 'package:app_test/src/pages/home_page.dart';
 import 'package:app_test/src/pages/setting.dart';
-import 'package:app_test/src/services/navigation_service.dart';
-import 'package:app_test/src/widgets/bottom_navigation_barTool.dart';
+import 'package:app_test/src/widgets/scaffold_with_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-final rootNavigatorKey = GetIt.I<NavigationService>().navigatorKey;
-final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
-final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 /// 路由設定
 final GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     initialLocation: '/home',
-    navigatorKey: rootNavigatorKey,
-    routes: <RouteBase>[
+    navigatorKey: _rootNavigatorKey,
+    routes: [
       // 底部固定導航
-      StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) {
-            return const BottomNavigationBarTool();
+      ShellRoute(
+          navigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state, child) {
+            return NoTransitionPage(
+                child: ScaffoldWithBottomNavigationBar(
+              location: state.location,
+              child: child,
+            ));
           },
-          branches: [
+          routes: [
             // first nav
-            StatefulShellBranch(
-              navigatorKey: _shellNavigatorAKey,
-              routes: [
-                GoRoute(
-                    path: '/home',
-                    builder: (context, state) => const HomePage(),
-                    routes: [
-                      // child route
-                      GoRoute(
-                          path: 'detail',
-                          builder: (context, state) => const A(),
-                          routes: [
-                            // child route
-                            GoRoute(
-                                path: ':index',
-                                builder: (context, state) {
-                                  final index = int.tryParse(
-                                      state.pathParameters['index'] ?? '');
-                                  return Details(index: index);
-                                }),
-                          ]),
-                    ]),
-              ],
-            ),
+            GoRoute(
+                path: '/home',
+                parentNavigatorKey: _shellNavigatorKey,
+                builder: (context, state) => const HomePage(),
+                routes: [
+                  // child route
+                  GoRoute(
+                      path: 'detail',
+                      builder: (context, state) => const A(),
+                      routes: [
+                        // child route
+                        GoRoute(
+                            path: ':index',
+                            builder: (context, state) {
+                              final index = int.tryParse(
+                                  state.pathParameters['index'] ?? '');
+                              return Details(index: index);
+                            }),
+                      ]),
+                ]),
             // second nav
-            StatefulShellBranch(
-              navigatorKey: _shellNavigatorBKey,
-              routes: [
-                GoRoute(
-                  path: '/app',
-                  builder: (context, state) => const Apps(),
-                ),
-              ],
+            GoRoute(
+              path: '/app',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const Apps(),
             ),
             // third nav
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: '/calendar',
-                  builder: (context, state) => const Calendar(),
-                ),
-              ],
+            GoRoute(
+              path: '/calendar',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const Calendar(),
             ),
             // the last nav
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: '/setting',
-                  builder: (context, state) => const Setting(),
-                ),
-              ],
+            GoRoute(
+              path: '/setting',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const Setting(),
             ),
           ])
     ]);
