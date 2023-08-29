@@ -1,9 +1,9 @@
-import 'package:app_test/src/pages/a.dart';
 import 'package:app_test/src/pages/apps.dart';
 import 'package:app_test/src/pages/calendar.dart';
 import 'package:app_test/src/pages/details.dart';
 import 'package:app_test/src/pages/home_page.dart';
 import 'package:app_test/src/pages/setting.dart';
+import 'package:app_test/src/pages/test_page.dart';
 import 'package:app_test/src/widgets/scaffold_with_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -37,7 +37,7 @@ final GoRouter router = GoRouter(
                   // child route
                   GoRoute(
                       path: 'detail',
-                      builder: (context, state) => const A(),
+                      builder: (context, state) => const TestPage(),
                       routes: [
                         // child route
                         GoRoute(
