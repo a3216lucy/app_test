@@ -2,14 +2,14 @@
 class ScreenPaths {
   //home
   static String home() => '/home';
-  //detail
-  static String a() => '/home/detail';
-  //detailPage
-  static String detailPage({int? index}) => '/home/detail/$index';
+  //register
+  static String register() => '/home/register';
   //kkboxPage
   static String kkboxPage() => '/home/kkboxPage';
-  //app
-  static String app() => '/app';
+  //detailPage
+  static String detailPage({int? index}) => '/home/$index';
+  //login
+  static String login() => '/login';
   //calendar
   static String calendar() => '/calendar';
   //setting

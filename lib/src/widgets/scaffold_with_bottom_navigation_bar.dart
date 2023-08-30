@@ -28,14 +28,14 @@ class _MyHomePageState extends State<ScaffoldWithBottomNavigationBar> {
       initialLocation: '/home',
     ),
     MyCustomBottomNavBarItem(
-      icon: Icon(Icons.apps),
-      activeIcon: Icon(Icons.apps),
-      initialLocation: '/app',
-    ),
-    MyCustomBottomNavBarItem(
       icon: Icon(Icons.date_range),
       activeIcon: Icon(Icons.date_range),
       initialLocation: '/calendar',
+    ),
+    MyCustomBottomNavBarItem(
+      icon: Icon(Icons.login),
+      activeIcon: Icon(Icons.login),
+      initialLocation: '/login',
     ),
     MyCustomBottomNavBarItem(
       icon: Icon(Icons.density_medium),
@@ -47,8 +47,8 @@ class _MyHomePageState extends State<ScaffoldWithBottomNavigationBar> {
   // 底部導覽列項目列表
   final List<dynamic> _navItems = [
     NavItem(Icons.home, "首頁"),
-    NavItem(Icons.apps, "APP"),
     NavItem(Icons.date_range, "日曆"),
+    NavItem(Icons.login, "登入"),
     NavItem(Icons.density_medium, "設定"),
   ];
 

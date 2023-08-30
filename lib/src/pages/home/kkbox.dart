@@ -15,17 +15,17 @@ class _KkboxPageState extends State<KkboxPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.url);
-    return InAppWebView(
-      // 加載的網頁 URL
-      initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
-      onLoadStart: (controller, url) {
-        print("started $url");
-        print(Uri.parse(widget.url));
-      },
-      onWebViewCreated: (controller) {
-        webView = controller;
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('KKBOX Page'),
+      ),
+      body: InAppWebView(
+        // 加載的網頁 URL
+        initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
+        onWebViewCreated: (controller) {
+          webView = controller;
+        },
+      ),
     );
   }
 }

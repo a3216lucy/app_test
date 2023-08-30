@@ -6,11 +6,17 @@ class Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        alignment: Alignment.center,
-        child: const Text('CALENDAR',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+    return Scaffold(
+      appBar: AppBar(title: const Text('CALENDAR')),
+      body: Center(
+        child: Column(
+          children: [
+            OutlinedButton(
+              onPressed: () {},
+              child: const Text('到 Detail 頁面'),
+            ),
+          ],
+        ),
       ),
     );
   }

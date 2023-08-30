@@ -1,10 +1,10 @@
-import 'package:app_test/src/pages/apps.dart';
 import 'package:app_test/src/pages/calendar.dart';
 import 'package:app_test/src/pages/home.dart';
 import 'package:app_test/src/pages/home/details.dart';
-import 'package:app_test/src/pages/kkbox_page.dart';
+import 'package:app_test/src/pages/home/kkbox.dart';
+import 'package:app_test/src/pages/home/register.dart';
+import 'package:app_test/src/pages/login.dart';
 import 'package:app_test/src/pages/setting.dart';
-import 'package:app_test/src/pages/test_page.dart';
 import 'package:app_test/src/widgets/scaffold_with_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,35 +43,35 @@ final GoRouter router = GoRouter(
                 routes: [
                   // child route
                   GoRoute(
-                      path: 'detail',
-                      builder: (context, state) => const TestPage(),
-                      routes: [
-                        // child route
-                        GoRoute(
-                            path: ':index',
-                            builder: (context, state) {
-                              final index = int.tryParse(
-                                  state.pathParameters['index'] ?? '');
-                              return Details(index: index);
-                            }),
-                      ]),
+                    path: 'register',
+                    builder: (context, state) => const RegisterPage(),
+                  ),
+                  // child route
                   GoRoute(
                     path: 'kkboxPage',
                     builder: (context, state) =>
                         KkboxPage(url: (state.extra as FamilyUrl).url),
                   ),
+                  // child route
+                  GoRoute(
+                      path: ':index',
+                      builder: (context, state) {
+                        final index =
+                            int.tryParse(state.pathParameters['index'] ?? '');
+                        return Details(index: index);
+                      }),
                 ]),
             // second nav
-            GoRoute(
-              path: '/app',
-              parentNavigatorKey: _shellNavigatorKey,
-              builder: (context, state) => const Apps(),
-            ),
-            // third nav
             GoRoute(
               path: '/calendar',
               parentNavigatorKey: _shellNavigatorKey,
               builder: (context, state) => const Calendar(),
+            ),
+            // third nav
+            GoRoute(
+              path: '/login',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const Login(),
             ),
             // the last nav
             GoRoute(
