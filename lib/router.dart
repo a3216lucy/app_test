@@ -1,9 +1,11 @@
-import 'package:app_test/src/pages/calendar.dart';
+import 'package:app_test/src/models/family_url.dart';
 import 'package:app_test/src/pages/home.dart';
 import 'package:app_test/src/pages/home/details.dart';
 import 'package:app_test/src/pages/home/kkbox.dart';
 import 'package:app_test/src/pages/home/register.dart';
+import 'package:app_test/src/pages/home/test.dart';
 import 'package:app_test/src/pages/login.dart';
+import 'package:app_test/src/pages/posts.dart';
 import 'package:app_test/src/pages/setting.dart';
 import 'package:app_test/src/widgets/scaffold_with_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,6 @@ import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
-
-class FamilyUrl {
-  String url = '';
-
-  FamilyUrl({required this.url});
-}
 
 /// 路由設定
 final GoRouter router = GoRouter(
@@ -48,6 +44,11 @@ final GoRouter router = GoRouter(
                   ),
                   // child route
                   GoRoute(
+                    path: 'test',
+                    builder: (context, state) => const Test(),
+                  ),
+                  // child route
+                  GoRoute(
                     path: 'kkboxPage',
                     builder: (context, state) =>
                         KkboxPage(url: (state.extra as FamilyUrl).url),
@@ -63,9 +64,9 @@ final GoRouter router = GoRouter(
                 ]),
             // second nav
             GoRoute(
-              path: '/calendar',
+              path: '/posts',
               parentNavigatorKey: _shellNavigatorKey,
-              builder: (context, state) => const Calendar(),
+              builder: (context, state) => const Posts(),
             ),
             // third nav
             GoRoute(

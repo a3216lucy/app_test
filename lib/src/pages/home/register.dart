@@ -26,37 +26,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   key: _registerFormKey,
                   child: Column(
                     children: <Widget>[
-                      // username
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.people),
-                          hintText: 'Enter your username',
-                          labelText: '使用者姓名',
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return '請輸入使用者名稱';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          formModel.username = value!;
-                        },
-                      ),
                       // email
                       TextFormField(
                         decoration: const InputDecoration(
                           icon: Icon(Icons.email),
-                          hintText: 'Enter your email',
-                          labelText: '信箱',
+                          hintText: 'Enter your account',
+                          labelText: '帳號',
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return '請輸入信箱';
+                            return '請輸入帳號';
                           }
-                          if (!RegexValidator(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .isValid(value)) {
+                          if (!RegexValidator(emailPattern).isValid(value)) {
                             return '請輸入正確的信箱格式';
                           }
                           return null;
@@ -134,6 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // 註冊成功後顯示彈窗
   void _showRegistrationDetails() {
     showDialog(
       context: context,
@@ -144,7 +126,6 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('使用者姓名：${formModel.username}'),
               Text('信箱：${formModel.email}'),
               Text('信箱：${formModel.password}'),
               Text('信箱：${formModel.confirmPassword}'),

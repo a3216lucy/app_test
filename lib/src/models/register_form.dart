@@ -1,7 +1,6 @@
 import 'package:app_test/src/constants/regex.dart';
 
 class RegisterFormModel {
-  String username = '';
   String email = '';
   String password = '';
   String confirmPassword = '';
@@ -9,8 +8,7 @@ class RegisterFormModel {
   // 驗證表單是否有效
   bool isValid() {
     // 表單驗證邏輯
-    return username.isNotEmpty &&
-        email.isNotEmpty &&
+    return email.isNotEmpty &&
         isValidEmail(email) &&
         password.isNotEmpty &&
         isValidPassword(password) &&
@@ -23,9 +21,7 @@ class RegisterFormModel {
   // 驗證電子郵件格式是否有效
   bool isValidEmail(String email) {
     // 電子郵件格式驗證邏輯
-    return RegexValidator(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .isValid(email);
+    return RegexValidator(emailPattern).isValid(email);
   }
 
   // 自定義驗證方法，用於驗證密碼是否符合要求

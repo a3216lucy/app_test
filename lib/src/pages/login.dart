@@ -18,6 +18,26 @@ class _LoginState extends State<Login> {
   // 監聽 password 輸入框
   final passwordController = TextEditingController();
 
+  // 路由守衛邏輯
+  bool authGuardLogic() {
+    // 若表單驗證成功，則回傳 true 並顯示 SnackBar
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Column(
+          children: [
+            Text('帳號：${accountController.text}'),
+            Text('密碼：${passwordController.text}'),
+            const Text('登入成功'),
+          ],
+        )),
+      );
+      return true;
+    }
+    // 反之，則回傳 false
+    return false;
+  }
+
   @override
   void dispose() {
     accountController.dispose();
@@ -60,9 +80,7 @@ class _LoginState extends State<Login> {
                     if (value == null || value.isEmpty) {
                       return '請輸入帳號';
                     }
-                    if (!RegexValidator(
-                            r'^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$')
-                        .isValid(value)) {
+                    if (!RegexValidator(accountPattern).isValid(value)) {
                       return '請輸入正確的帳號格式';
                     }
                     return null;
@@ -99,16 +117,15 @@ class _LoginState extends State<Login> {
                           color: Colors.white54,
                         )),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          // 添加路由守衛
+                          final canNavigate = authGuardLogic();
+                          if (canNavigate) {
+                            GoRouter.of(context).go(ScreenPaths.test());
+                          } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Column(
-                                children: [
-                                  Text('帳號：${accountController.text}'),
-                                  Text('密碼：${passwordController.text}'),
-                                  const Text('登入成功'),
-                                ],
-                              )),
+                              const SnackBar(
+                                content: Text('Access denied!'),
+                              ),
                             );
                           }
                         },
