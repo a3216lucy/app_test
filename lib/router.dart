@@ -1,7 +1,8 @@
 import 'package:app_test/src/pages/apps.dart';
 import 'package:app_test/src/pages/calendar.dart';
-import 'package:app_test/src/pages/details.dart';
-import 'package:app_test/src/pages/home_page.dart';
+import 'package:app_test/src/pages/home.dart';
+import 'package:app_test/src/pages/home/details.dart';
+import 'package:app_test/src/pages/kkbox_page.dart';
 import 'package:app_test/src/pages/setting.dart';
 import 'package:app_test/src/pages/test_page.dart';
 import 'package:app_test/src/widgets/scaffold_with_bottom_navigation_bar.dart';
@@ -10,6 +11,12 @@ import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+class FamilyUrl {
+  String url = '';
+
+  FamilyUrl({required this.url});
+}
 
 /// 路由設定
 final GoRouter router = GoRouter(
@@ -48,6 +55,11 @@ final GoRouter router = GoRouter(
                               return Details(index: index);
                             }),
                       ]),
+                  GoRoute(
+                    path: 'kkboxPage',
+                    builder: (context, state) =>
+                        KkboxPage(url: (state.extra as FamilyUrl).url),
+                  ),
                 ]),
             // second nav
             GoRoute(

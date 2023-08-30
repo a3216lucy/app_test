@@ -11,8 +11,6 @@ class PlaybackLists extends StatelessWidget {
       builder: (context, ref, child) {
         // 通過 context.read 獲取數據
         final songList = ref.watch(songDataProvider);
-        print('PlaybackLists');
-        print(songList.length);
 
         // 根據 songList 的內容構建 UI
         return ListView.builder(

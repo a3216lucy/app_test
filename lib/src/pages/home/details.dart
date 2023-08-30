@@ -1,6 +1,9 @@
+import 'package:app_test/router.dart';
 import 'package:app_test/src/components/play_lists.dart';
+import 'package:app_test/src/constants/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 /// 詳細頁
 class Details extends StatefulWidget {
@@ -43,6 +46,12 @@ class _DetailsState extends State<Details> {
                     title: Text(songList[0].album.name,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20)),
+                    trailing: IconButton(
+                        icon: const Icon(Icons.link_rounded),
+                        onPressed: () => {
+                              GoRouter.of(context).push(ScreenPaths.kkboxPage(),
+                                  extra: FamilyUrl(url: songList[0].album.url))
+                            }),
                   ),
                   ListTile(
                     leading: const Icon(Icons.tiktok),

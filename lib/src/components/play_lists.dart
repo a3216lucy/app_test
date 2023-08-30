@@ -55,15 +55,9 @@ class _PlayListsState extends State<PlayLists> {
                           songList.add(track);
                           ref.read(songDataProvider).add(track);
 
-                          print(ref.read(songDataProvider));
-
                           // 執行導航導轉
-                          print(
-                              'Navigating to detailPage with index ${tracksData[index].duration}');
                           GoRouter.of(context).push(ScreenPaths.detailPage(
                               index: tracksData[index].duration));
-                          // GoRouter.of(context).go(ScreenPaths.detailPage(
-                          //     index: tracksData[index].duration));
                         },
                       );
                     },
